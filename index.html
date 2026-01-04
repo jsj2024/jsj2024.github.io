@@ -1,0 +1,758 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>竟思佳 | LLM Safety Alignment Researcher</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #fafafa;
+            --bg-secondary: #ffffff;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #7a7a7a;
+            --accent: #2c5f8d;
+            --accent-light: #3d7fb8;
+            --border: #e5e5e5;
+            --shadow: rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Work Sans', -apple-system, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #f9fafb 100%);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px var(--shadow);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 400;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem 4rem;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+            opacity: 0;
+            animation: fadeInUp 0.8s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+        }
+
+        .hero-image {
+            text-align: center;
+        }
+
+        .profile-photo {
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--bg-secondary);
+            box-shadow: 0 10px 40px var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.05);
+        }
+
+        .hero-content h1 {
+            font-family: 'Crimson Text', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+        }
+
+        .hero-content .title {
+            font-size: 1.1rem;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content .bio {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .contact-link:hover {
+            color: var(--accent);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Section Styles */
+        section {
+            background: var(--bg-secondary);
+            margin: 2rem 0;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px var(--shadow);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-family: 'Crimson Text', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+        }
+
+        /* Education */
+        .education-item {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .education-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .education-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-header h3 {
+            font-size: 1.3rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .education-header .date {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .education-details {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .education-details .degree {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.3rem;
+        }
+
+        /* Publications */
+        .publication-item {
+            margin-bottom: 2.5rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .publication-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px var(--shadow);
+        }
+
+        .publication-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+        }
+
+        .publication-venue {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+        }
+
+        .publication-links {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .pub-link {
+            color: var(--accent-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .pub-link:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
+        .publication-highlights {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .publication-highlights li {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .publication-highlights li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Projects */
+        .project-item {
+            margin-bottom: 2.5rem;
+            padding: 1.8rem;
+            background: var(--bg-primary);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .project-header h3 {
+            font-size: 1.25rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .project-role {
+            background: #e8f4f8;
+            color: var(--accent);
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .project-highlights {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .project-highlights li {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 0.6rem;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .project-highlights li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .project-outcome {
+            margin-top: 1.2rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-light);
+        }
+
+        .project-outcome strong {
+            color: var(--accent);
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category h3 {
+            font-size: 1.1rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .skill-category p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Awards */
+        .awards-list {
+            list-style: none;
+        }
+
+        .awards-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            transition: padding-left 0.3s;
+        }
+
+        .awards-list li:hover {
+            padding-left: 1rem;
+        }
+
+        .awards-list li:last-child {
+            border-bottom: none;
+        }
+
+        .award-highlight {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 3rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding: 3rem 1.5rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .contact-links {
+                justify-content: center;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
+
+            section {
+                padding: 2rem 1.5rem;
+            }
+
+            .education-header,
+            .project-header {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">JSJ</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#awards">Awards</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-image">
+            <img src="https://via.placeholder.com/240" alt="竟思佳" class="profile-photo">
+        </div>
+        <div class="hero-content">
+            <h1>竟思佳</h1>
+            <p class="title">LLM Safety Alignment Researcher | Ph.D. Student</p>
+            <p class="bio">
+                我是南京大学电子科学与工程学院的一年级博士生，研究方向为大语言模型的安全对齐，专注于多轮对话中的风险识别与防御机制。我的工作致力于让AI系统更加安全可靠。
+            </p>
+            <div class="contact-links">
+                <a href="mailto:jingsijia2021@163.com" class="contact-link">
+                    📧 jingsijia2021@163.com
+                </a>
+                <a href="https://github.com/jsj2024" class="contact-link" target="_blank">
+                    💻 GitHub
+                </a>
+                <a href="tel:15136028780" class="contact-link">
+                    📱 15136028780
+                </a>
+                <span class="contact-link">
+                    📍 江苏·南京
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- About / Education -->
+        <section id="about">
+            <h2 class="section-title">Education</h2>
+            
+            <div class="education-item">
+                <div class="education-header">
+                    <h3>南京大学</h3>
+                    <span class="date">2025.09 - 2030.06</span>
+                </div>
+                <div class="education-details">
+                    <p class="degree">Ph.D. 电子科学与工程学院 | 电子信息专业 (直博)</p>
+                    <p><strong>Research Interests:</strong> LLMs Alignment, Agentic RL</p>
+                    <p><strong>Advisor:</strong> Prof. Yang Gao</p>
+                </div>
+            </div>
+
+            <div class="education-item">
+                <div class="education-header">
+                    <h3>河南大学</h3>
+                    <span class="date">2021.09 - 2025.06</span>
+                </div>
+                <div class="education-details">
+                    <p class="degree">本科 | 人工智能学院 | 人工智能专业</p>
+                    <p><strong>Rank:</strong> 1/114 | <strong>GPA:</strong> 3.82/4.00</p>
+                    <p><strong>Honors:</strong> 2023年国家奖学金（全院唯一）| 班长 | 院学生会主席 | CET6-556</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publications -->
+        <section id="publications">
+            <h2 class="section-title">Publications</h2>
+
+            <div class="publication-item">
+                <h3 class="publication-title">
+                    SafeDialBench: A Fine-Grained Safety Benchmark for Large Language Models in Multi-Turn Dialogues
+                </h3>
+                <span class="publication-venue">ICLR 2026 (Under Review)</span>
+                <div class="publication-links">
+                    <a href="#" class="pub-link">📄 Paper (Coming Soon)</a>
+                    <a href="#" class="pub-link">💻 GitHub (Open Source)</a>
+                </div>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.8rem;">
+                    <em>共同一作 (Co-first Author)</em>
+                </p>
+                <ul class="publication-highlights">
+                    <li><strong>核心贡献:</strong> 提出首个系统性评估多轮对话安全性的综合基准，填补了LLM安全评估在多轮风险累积方面的空白</li>
+                    <li><strong>数据规模:</strong> 构建4,053条双语多轮对话（中文2,016条、英文2,037条），对话轮次3-10轮，覆盖6大安全维度、22个子类别、22个真实场景</li>
+                    <li><strong>技术创新:</strong> 首创三维度评估框架（识别、处理、一致性）+ 整合7种越狱攻击策略</li>
+                    <li><strong>关键发现:</strong> 评估了17个主流LLM（GPT-4o、Yi-34B-Chat、Llama3.1等），发现第4轮后安全性显著退化</li>
+                    <li><strong>影响力:</strong> 代码完全开源（CC BY 4.0），已被PsyLite、MultiBreak等多个后续研究引用，纳入Emergent Mind综述</li>
+                </ul>
+            </div>
+
+            <div class="publication-item">
+                <h3 class="publication-title">
+                    PIARS: Progressive Induction-Aware Representation Separation for LLM Safety
+                </h3>
+                <span class="publication-venue">Machine Learning Journal (CCF-B, Under Review)</span>
+                <div class="publication-links">
+                    <a href="#" class="pub-link">📄 Paper (Coming Soon)</a>
+                    <a href="#" class="pub-link">💻 GitHub (Open Source)</a>
+                </div>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.8rem;">
+                    <em>第一作者 (First Author)</em>
+                </p>
+                <ul class="publication-highlights">
+                    <li><strong>方法创新:</strong> 提出首个针对多轮越狱的表征工程防御方法，通过LoRA高效更新模型参数实现安全对齐</li>
+                    <li><strong>理论贡献:</strong> 首次提出Induction Degree (ID)概念，定量化多轮对话中的风险累积效应</li>
+                    <li><strong>技术方案:</strong> 设计多目标优化框架：(1)ID加权的表征分离损失 (2)安全边界约束 (3)效用保留损失</li>
+                    <li><strong>实验结果:</strong> 在Llama-3、Qwen2.5、Mistral等模型上，多轮越狱ASR平均降低50%以上，同时过度拒绝率降低40%，保持MMLU/GSM8K性能</li>
+                    <li><strong>研究价值:</strong> 为表征工程与多轮安全对齐提供了理论基础和实践路径，t-SNE可视化证实安全/不安全表征成功分离</li>
+                </ul>
+            </div>
+
+            <div class="publication-item">
+                <h3 class="publication-title">发明专利</h3>
+                <ul class="publication-highlights">
+                    <li>《一种基于大模型的电磁领域混合数据集自动生成方法》（中国航天科工项目产出）</li>
+                    <li>《一种构建可信电磁雷达领域多模态大模型的一站式适配架构及方法》（中国航天科工项目产出）</li>
+                    <li>《一种基于智能体'灵犀'的拟人化多轮对话客服方法》（中国移动项目产出）</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Projects -->
+        <section id="projects">
+            <h2 class="section-title">Projects</h2>
+
+            <div class="project-item">
+                <div class="project-header">
+                    <h3>电磁领域垂域大模型</h3>
+                    <span class="project-role">项目负责人</span>
+                </div>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">2025年2月 - 2025年10月</p>
+                
+                <ul class="project-highlights">
+                    <li><strong>项目背景:</strong> 与中国航天科工集团合作，构建电磁态势感知与决策支持专用大模型，解决通用模型在电磁专业领域知识缺失问题</li>
+                    <li><strong>数据工程:</strong> 构建大规模电磁数据知识库：85部专业书籍、230套习题册、1500+篇论文、14000+份情报文件、78份GJB标准（6.2GB），最终生成52,197条指令数据 + 10,292条COT推理数据</li>
+                    <li><strong>LoRA微调与秩自适应:</strong> 基于DeepSeek-R1-Distill-Qwen-32B实施LoRA微调（r=4, alpha=16），创新性引入秩自适应动态调度机制</li>
+                    <li><strong>Self-Refine自我反思:</strong> 设计融入电磁专业知识的多维批评提示+结构化反馈机制，电磁态势认知准确率从89.4%提升至93.4%</li>
+                </ul>
+                
+                <div class="project-outcome">
+                    <strong>成果产出:</strong> 产出2项发明专利，模型已应用于航天科工电磁态势感知系统
+                </div>
+            </div>
+
+            <div class="project-item">
+                <div class="project-header">
+                    <h3>中国移动智能客服Agent系统（"灵犀"）</h3>
+                    <span class="project-role">核心骨干</span>
+                </div>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">2024年12月 - 2025年9月</p>
+                
+                <ul class="project-highlights">
+                    <li><strong>项目背景:</strong> 与中国移动合作开发智能客服系统，解决传统客服在多意图识别、知识库调用、情感交互方面的痛点</li>
+                    <li><strong>架构创新:</strong> 首创深度嵌入式融合架构，将智能体作为原生组件嵌入业务页面（余量查询、套餐推荐等），实现服务入口统一与交互上下文无缝共享</li>
+                    <li><strong>多意图协同框架:</strong> 设计5种意图策略（推荐、查询、对比、质疑、闲聊），精确查询类任务使用专用工具，复杂推理类任务引入思维链技术</li>
+                    <li><strong>情感感知机制:</strong> 集成用户情绪识别与拟人化回复生成，支持长程多轮对话管理</li>
+                </ul>
+                
+                <div class="project-outcome">
+                    <strong>成果产出:</strong> 产出发明专利，系统已部署至中国移动多个省份客服中心
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section id="skills">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>LLM Post-Training</h3>
+                    <p>
+                        熟练掌握SFT流程，包括数据构建、训练策略、超参数调优等；深入理解DPO、IPO、KTO等偏好优化方法；
+                        熟悉RLHF、PPO、GRPO等强化学习对齐算法的原理与实现；具备偏好数据构建、标注、质量控制全流程经验
+                    </p>
+                </div>
+                <div class="skill-category">
+                    <h3>训练框架与工程</h3>
+                    <p>
+                        PyTorch, Hugging Face Transformers, PEFT/LoRA；
+                        DeepSpeed, FSDP等大规模训练框架；
+                        vLLM等推理加速工具
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Awards -->
+        <section id="awards">
+            <h2 class="section-title">Awards & Honors</h2>
+            <ul class="awards-list">
+                <li><span class="award-highlight">2023年国家奖学金</span> (1/600)</li>
+                <li><span class="award-highlight">2023年度中国机器人及人工智能大赛全国总决赛一等奖</span></li>
+                <li><span class="award-highlight">河南省优秀毕业生</span></li>
+                <li><span class="award-highlight">院唯一优秀毕业论文</span></li>
+            </ul>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 竟思佳. Built with passion for AI Safety.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem;">Last updated: January 2025</p>
+    </footer>
+
+    <!-- Scroll Animation Script -->
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
