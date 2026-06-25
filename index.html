@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sijia Jing | LLM Safety Research</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-
 <style>
 :root {
     --bg:#fafafa;
@@ -14,13 +12,15 @@
     --muted:#666;
     --accent:#2c5f8d;
     --border:#e5e5e5;
+    --line-light:#ededed;
     --nav-h:60px;
+    --mono:'Consolas','Monaco','Menlo','Courier New',monospace;
 }
 
 html { scroll-behavior:smooth; }
 
 body {
-    font-family: 'Work Sans', sans-serif;
+    font-family: var(--mono);
     margin:0;
     background: var(--bg);
     color: var(--text);
@@ -50,9 +50,10 @@ body {
 }
 
 .nav-brand {
-    font-family:'Crimson Text', serif;
-    font-size:20px;
+    font-family:var(--mono);
+    font-size:19px;
     font-weight:700;
+    letter-spacing:-0.5px;
     color:var(--text);
     text-decoration:none;
 }
@@ -65,7 +66,7 @@ body {
 .nav-links a {
     color:var(--muted);
     text-decoration:none;
-    font-size:15px;
+    font-size:14px;
     font-weight:500;
     transition:color 0.2s ease;
 }
@@ -84,11 +85,12 @@ body {
     gap:40px;
     align-items:center;
     padding:60px 0;
+    border-bottom:1px solid var(--line-light);
 }
 
 .hero img {
-    width:200px;
-    height:200px;
+    width:220px;
+    height:220px;
     border-radius:50%;
     object-fit:cover;
     border:3px solid white;
@@ -97,21 +99,23 @@ body {
 }
 
 h1 {
-    font-family:'Crimson Text', serif;
-    font-size:42px;
+    font-family:var(--mono);
+    font-size:38px;
+    letter-spacing:-1px;
     margin:0;
 }
 
 .title {
     color: var(--accent);
-    font-size:18px;
-    margin-top:6px;
+    font-size:17px;
+    margin-top:8px;
 }
 
 .bio {
     color: var(--muted);
-    margin-top:10px;
+    margin-top:12px;
     max-width:750px;
+    font-size:15px;
 }
 
 .bio a { color:var(--accent); text-decoration:none; }
@@ -158,40 +162,63 @@ section {
 }
 
 h2 {
-    font-family:'Crimson Text', serif;
-    font-size:28px;
+    font-family:var(--mono);
+    font-size:25px;
+    letter-spacing:-0.5px;
     border-bottom:2px solid var(--accent);
     display:inline-block;
     margin-bottom:20px;
 }
 
 h2 .ico {
-    font-size:22px;
+    font-size:20px;
     margin-left:6px;
 }
 
 /* PUBLICATION */
 .paper {
-    margin-bottom:18px;
-    padding:12px 0;
+    display:flex;
+    gap:20px;
+    align-items:flex-start;
+    margin-bottom:22px;
+    padding:14px 0;
     border-bottom:1px solid var(--border);
 }
 
+.paper-thumb {
+    flex:0 0 165px;
+    width:165px;
+}
+
+.paper-thumb img {
+    width:100%;
+    display:block;
+    border:1px solid var(--border);
+    border-radius:6px;
+    background:#fff;
+}
+
+.paper-body { flex:1; min-width:0; }
+
 .paper-title {
-    font-size:17px;
+    font-size:16px;
     font-weight:600;
+    line-height:1.5;
 }
 
 .venue {
     color: var(--accent);
     font-size:14px;
+    margin-top:2px;
 }
+
+.links { margin-top:4px; }
 
 .links a {
     color: var(--muted);
     font-size:14px;
     text-decoration:none;
-    margin-right:10px;
+    margin-right:12px;
 }
 
 .links a:hover {
@@ -201,20 +228,15 @@ h2 .ico {
 .tags {
     font-size:13px;
     color: var(--muted);
+    margin-top:4px;
 }
 
-/* layout grid */
-.grid {
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px;
-}
+.tags .me { color: var(--text); font-weight:600; }
 
-.card {
-    background:white;
-    border:1px solid var(--border);
-    padding:18px;
-    border-radius:10px;
+.eqnote {
+    font-size:12px;
+    color:#999;
+    margin-top:14px;
 }
 
 footer {
@@ -224,18 +246,25 @@ footer {
     font-size:13px;
 }
 
+#news a, .links a.cite { }
+#news a { color:var(--accent); text-decoration:none; }
+#news a:hover { text-decoration:underline; }
+
 @media (max-width:720px){
     .nav-links { gap:14px; }
     .nav-links a { font-size:13px; }
 }
 
 @media (max-width:640px){
-    .nav-brand { font-size:18px; }
+    .nav-brand { font-size:17px; }
     .nav-links { gap:12px; }
-    .nav-links a:nth-child(n+4){ display:none; } /* keep nav tidy on small screens */
+    .nav-links a:nth-child(n+4){ display:none; }
     .hero{flex-direction:column;text-align:center;padding:40px 0;gap:24px;}
+    .hero img{width:190px;height:190px;}
     .social{justify-content:center;}
-    h1{font-size:34px;}
+    h1{font-size:32px;}
+    .paper{flex-direction:column;}
+    .paper-thumb{flex-basis:auto;width:100%;max-width:320px;}
 }
 </style>
 </head>
@@ -304,8 +333,8 @@ footer {
 <section id="news">
 <h2>News <span class="ico">🔥</span></h2>
 <ul>
-<li><strong>2026.05</strong>: Our paper <em>PIARS</em> on progressive induction-aware safety alignment is accepted to <em>Machine Learning</em> (Springer).</li>
-<li><strong>2026.01</strong>: Our paper <em>SafeDialBench</em> is accepted to ICLR 2026.</li>
+<li><strong>2026.05</strong>: Our paper <a href="https://link.springer.com/article/10.1007/s10994-026-07067-1" target="_blank" rel="noopener"><em>PIARS</em></a> on progressive induction-aware safety alignment is accepted to <em>Machine Learning</em> (Springer).</li>
+<li><strong>2026.01</strong>: Our paper <a href="https://openreview.net/pdf?id=KFjtRqVnKH" target="_blank" rel="noopener"><em>SafeDialBench</em></a> is accepted to ICLR 2026.</li>
 <li><strong>2025.06</strong>: Awarded Outstanding Undergraduate Thesis of Henan Province.</li>
 <li><strong>2023.10</strong>: Received the National Scholarship for Undergraduate Students (Top 1 in School).</li>
 </ul>
@@ -327,6 +356,10 @@ footer {
 <h2>Publications <span class="ico">📄</span></h2>
 
 <div class="paper">
+<div class="paper-thumb">
+<img src="SafedialBench.jpg" alt="SafeDialBench pipeline" onerror="this.parentElement.style.display='none'">
+</div>
+<div class="paper-body">
 <div class="paper-title">
 SafeDialBench: A Fine-Grained Safety Benchmark for Large Language Models in Multi-Turn Dialogues with Diverse Jailbreak Attacks
 </div>
@@ -335,16 +368,20 @@ SafeDialBench: A Fine-Grained Safety Benchmark for Large Language Models in Mult
 <a href="https://openreview.net/pdf?id=KFjtRqVnKH" target="_blank" rel="noopener">Paper</a>
 <a href="https://safedialbench.github.io/" target="_blank" rel="noopener">Project Page</a>
 <a href="https://github.com/jsj2024/SafeDialBench-Dataset" target="_blank" rel="noopener">GitHub</a>
-<a href="https://arxiv.org/abs/2502.11090" target="_blank" rel="noopener">arXiv</a>
 </div>
 <div class="tags">
-Hongye Cao, Yanming Wang, <strong>Sijia Jing</strong>, et al. (co-first author)
+Hongye Cao*, <span class="me">Sijia Jing*</span>, Yanming Wang*, Ziyue Peng*, Zhixin Bai, Zhe Cao, Meng Fang, Fan Feng, Jiaheng Liu, Boyan Wang, Tianpei Yang, Jing Huo, Yang Gao, Fanyu Meng, Xi Yang, Chao Deng, Junlan Feng
+</div>
 </div>
 </div>
 
 <div class="paper">
+<div class="paper-thumb">
+<img src="PIARS.jpg" alt="PIARS pipeline" onerror="this.parentElement.style.display='none'">
+</div>
+<div class="paper-body">
 <div class="paper-title">
-Progressive Induction-Aware Optimization for LLM Safety Under Multi-Turn Jailbreaks (PIARS)
+Progressive Induction-Aware Optimization for LLMs Safety Under Multi-turn Jailbreaks
 </div>
 <div class="venue"><em>Machine Learning</em> (Springer), 2026</div>
 <div class="links">
@@ -352,9 +389,12 @@ Progressive Induction-Aware Optimization for LLM Safety Under Multi-Turn Jailbre
 <a href="https://github.com/jsj2024/PIARS" target="_blank" rel="noopener">GitHub</a>
 </div>
 <div class="tags">
-<strong>Sijia Jing</strong>, Hongye Cao, Boyan Wang, Jing Huo, Yang Gao (co-first author)
+<span class="me">Sijia Jing*</span>, Hongye Cao*, Boyan Wang, Jing Huo, Yang Gao
 </div>
 </div>
+</div>
+
+<div class="eqnote">* Equal contribution.</div>
 
 </section>
 
