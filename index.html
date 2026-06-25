@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sijia Jing | LLM Safety & Agent Alignment</title>
+<title>Sijia Jing | LLM Safety Research</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
@@ -26,7 +26,7 @@ body {
 }
 
 .container {
-    max-width: 1000px;
+    max-width: 1050px;
     margin: 0 auto;
     padding: 40px 20px;
 }
@@ -63,6 +63,7 @@ h1 {
 .bio {
     color: var(--muted);
     margin-top:10px;
+    max-width: 720px;
 }
 
 /* SECTION */
@@ -85,6 +86,11 @@ h2 {
     padding:20px;
     margin-bottom:20px;
     border-radius:10px;
+    transition: 0.2s ease;
+}
+
+.paper:hover {
+    transform: translateY(-2px);
 }
 
 .paper-title {
@@ -104,7 +110,6 @@ h2 {
     margin-top:5px;
 }
 
-/* highlight */
 li {
     margin-bottom:6px;
     color: var(--muted);
@@ -143,18 +148,20 @@ footer {
 
     <div>
         <h1>Sijia Jing</h1>
+
         <div class="title">
             Ph.D. Student @ Nanjing University · LLM & Agent Safety Alignment
         </div>
 
         <div class="bio">
-            I am a Ph.D. student working on safety alignment of large language models and agentic systems.
-            My research focuses on multi-turn jailbreak robustness, trajectory-level risk modeling,
-            and reinforcement learning for safe agent behavior.
+            I am a Ph.D. student at Nanjing University working on safety alignment of large language models and agentic systems.
+            My research focuses on multi-turn jailbreak robustness, trajectory-level risk modeling, and reinforcement learning for safe AI agents.
         </div>
 
         <div class="bio">
-            Email: jingsijia2021@163.com · GitHub: jsj2024 · Nanjing, China
+            Email: jingsijia2021@163.com · GitHub: jsj2024 · Nanjing, China  
+            <br>
+            Education: PhD @ Nanjing University (2025–2030), B.S. @ Henan University (Rank 1/114)
         </div>
     </div>
 </div>
@@ -163,10 +170,10 @@ footer {
 <section>
 <h2>Research Interests</h2>
 <ul>
-<li>Multi-turn LLM safety and jailbreak robustness</li>
+<li>Multi-turn LLM safety & jailbreak robustness</li>
 <li>Agentic reinforcement learning with safety constraints</li>
-<li>Trajectory-level risk modeling and evaluation</li>
-<li>Representation learning for alignment and controllability</li>
+<li>Trajectory-level risk modeling & evaluation</li>
+<li>Representation learning for alignment</li>
 </ul>
 </section>
 
@@ -179,12 +186,12 @@ footer {
 SafeDialBench: A Fine-Grained Safety Benchmark for Large Language Models in Multi-Turn Dialogues
 </div>
 <div class="venue">ICLR 2026 (Accepted)</div>
-<div class="tags">Co-first Author · Benchmark · Multi-turn Safety Evaluation</div>
+<div class="tags">Co-first Author · Benchmark · Multi-turn Safety</div>
 
 <ul>
-<li>First systematic benchmark for multi-turn LLM safety under jailbreak attacks</li>
+<li>First systematic benchmark for multi-turn jailbreak safety evaluation</li>
 <li>4,053 bilingual dialogues covering 6 safety dimensions and 22 scenarios</li>
-<li>Reveals safety degradation after 4-turn interactions in SOTA LLMs</li>
+<li>Reveals significant safety degradation after 4 turns in SOTA LLMs</li>
 </ul>
 
 <div class="tags">Code: github.com/jsj2024/SafeDialBench</div>
@@ -198,33 +205,12 @@ PIARS: Progressive Induction-Aware Representation Separation for LLM Safety
 <div class="tags">First Author · Representation Learning · Alignment</div>
 
 <ul>
-<li>Introduces induction-aware representation separation for multi-turn safety alignment</li>
-<li>Defines Induction Degree (ID) to model risk accumulation in dialogue</li>
-<li>Reduces jailbreak success rate by 50%+ while preserving utility</li>
+<li>Proposes induction-aware representation separation for multi-turn safety alignment</li>
+<li>Introduces Induction Degree (ID) to model risk accumulation across dialogue turns</li>
+<li>Reduces jailbreak success rate by over 50% while preserving utility</li>
 </ul>
 
 <div class="tags">Code: github.com/jsj2024/PIARS</div>
-</div>
-
-</section>
-
-<!-- RESEARCH HIGHLIGHTS -->
-<section>
-<h2>Research Highlights</h2>
-
-<div class="card">
-<strong>Multi-turn Safety Modeling</strong>
-<p>Developed trajectory-level evaluation frameworks for jailbreak detection in long-horizon dialogue systems.</p>
-</div>
-
-<div class="card">
-<strong>Agentic RL Safety</strong>
-<p>Studying reinforcement learning methods that enforce safety constraints in tool-using agents.</p>
-</div>
-
-<div class="card">
-<strong>Representation-based Alignment</strong>
-<p>Exploring latent space separation to improve robustness of LLM safety behaviors.</p>
 </div>
 
 </section>
@@ -236,12 +222,12 @@ PIARS: Progressive Induction-Aware Representation Separation for LLM Safety
 <div class="grid">
 <div class="card">
 <strong>Research</strong>
-<p>LLM Alignment · RLHF · DPO/GRPO · Safety Evaluation · Agent Benchmarking</p>
+<p>LLM Alignment · RLHF · DPO / GRPO · Safety Evaluation · Agent Benchmarking</p>
 </div>
 
 <div class="card">
 <strong>Engineering</strong>
-<p>PyTorch · Transformers · PEFT/LoRA · DeepSpeed · vLLM</p>
+<p>PyTorch · HuggingFace · PEFT / LoRA · DeepSpeed · vLLM</p>
 </div>
 </div>
 
