@@ -65,6 +65,40 @@ h1 {
     max-width:750px;
 }
 
+/* SOCIAL ICONS */
+.social {
+    display:flex;
+    gap:14px;
+    margin-top:16px;
+    align-items:center;
+}
+
+.social a {
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:38px;
+    height:38px;
+    border:1px solid var(--border);
+    border-radius:50%;
+    color: var(--muted);
+    background:white;
+    transition: all 0.2s ease;
+}
+
+.social a:hover {
+    color:white;
+    background: var(--accent);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.social svg {
+    width:19px;
+    height:19px;
+    fill:currentColor;
+}
+
 /* SECTION */
 section {
     margin:50px 0;
@@ -76,6 +110,11 @@ h2 {
     border-bottom:2px solid var(--accent);
     display:inline-block;
     margin-bottom:20px;
+}
+
+h2 .ico {
+    font-size:22px;
+    margin-left:6px;
 }
 
 /* PUBLICATION */
@@ -131,6 +170,12 @@ footer {
     margin-top:80px;
     font-size:13px;
 }
+
+@media (max-width:640px){
+    .hero{flex-direction:column;text-align:center;padding:40px 0;gap:24px;}
+    .social{justify-content:center;}
+    h1{font-size:34px;}
+}
 </style>
 </head>
 
@@ -146,47 +191,63 @@ footer {
         <h1>Sijia Jing</h1>
 
         <div class="title">
-            Ph.D. Student @ Nanjing University · LLM & Agent Safety Alignment
+            Ph.D. Student @ Nanjing University · LLM &amp; Agent Safety Alignment
         </div>
 
         <div class="bio">
-            I am a Ph.D. student working on safety alignment of large language models and agentic systems,
-            focusing on multi-turn jailbreak robustness and trajectory-level risk modeling.
+            I am a Ph.D. student at Nanjing University, advised by Prof. Yang Gao,
+            and a member of the Reasoning and Learning Research Group. My research focuses on
+            the safety alignment of large language models and agentic systems, with an emphasis on
+            multi-turn jailbreak robustness and trajectory-level risk modeling.
+        </div>
+
+        <!-- SOCIAL ICONS -->
+        <div class="social">
+            <!-- Google Scholar -->
+            <a href="https://scholar.google.com/citations?user=a8RXwYUAAAAJ&hl=en" target="_blank" rel="noopener" title="Google Scholar" aria-label="Google Scholar">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z"/></svg>
+            </a>
+            <!-- GitHub -->
+            <a href="https://github.com/jsj2024" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .5C5.37.5 0 5.78 0 12.29c0 5.21 3.44 9.62 8.21 11.18.6.11.82-.25.82-.57 0-.28-.01-1.02-.02-2.01-3.34.71-4.04-1.58-4.04-1.58-.55-1.37-1.33-1.74-1.33-1.74-1.09-.73.08-.72.08-.72 1.2.08 1.84 1.21 1.84 1.21 1.07 1.8 2.81 1.28 3.5.98.11-.76.42-1.28.76-1.57-2.67-.3-5.47-1.31-5.47-5.83 0-1.29.47-2.34 1.24-3.17-.13-.3-.54-1.51.12-3.15 0 0 1.01-.32 3.3 1.21a11.6 11.6 0 0 1 6.01 0c2.29-1.53 3.3-1.21 3.3-1.21.66 1.64.25 2.85.12 3.15.77.83 1.23 1.88 1.23 3.17 0 4.53-2.81 5.53-5.49 5.82.43.36.81 1.08.81 2.18 0 1.58-.01 2.85-.01 3.24 0 .32.21.69.83.57A12.02 12.02 0 0 0 24 12.29C24 5.78 18.63.5 12 .5z"/></svg>
+            </a>
+            <!-- Email -->
+            <a href="mailto:jingsijia2021@163.com" title="Email" aria-label="Email">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2 4h20a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm10 7.5L3.5 6v12h17V6L12 11.5zM4.8 5l7.2 4.8L19.2 5z"/></svg>
+            </a>
         </div>
 
         <div class="bio">
-            Email: jingsijia2021@163.com · GitHub: jsj2024 · Nanjing, China  
-            <br>
-            PhD @ Nanjing University (2025–2030) · B.S. @ Henan University
+            Nanjing, China · Ph.D. @ Nanjing University (2025–2030) · B.S. @ Henan University (2021–2025)
         </div>
     </div>
 </div>
 
 <!-- NEWS -->
 <section>
-<h2>News</h2>
+<h2>News <span class="ico">🔥</span></h2>
 <ul>
-<li><strong>2026.01</strong>: One paper on “Evaluating LLM Safety” is accepted by ICLR 2026.</li>
-<li><strong>2026.05</strong>: One paper on “LLM Safety Alignment” is accepted by Machine Learning.</li>
-<li><strong>2023.10</strong>: National Scholarship for Undergraduate Students (Top 1 in School).</li>
-<li><strong>2025.06</strong>: Outstanding Undergraduate Thesis of Henan Province.</li>
+<li><strong>2026.05</strong>: Our paper on progressive induction-aware safety alignment is accepted to <em>Machine Learning</em> (Springer).</li>
+<li><strong>2026.01</strong>: Our paper <em>SafeDialBench</em> is accepted to ICLR 2026.</li>
+<li><strong>2025.06</strong>: Awarded Outstanding Undergraduate Thesis of Henan Province.</li>
+<li><strong>2023.10</strong>: Received the National Scholarship for Undergraduate Students (Top 1 in School).</li>
 </ul>
 </section>
 
 <!-- RESEARCH INTEREST -->
 <section>
-<h2>Research Interests</h2>
+<h2>Research Interests <span class="ico">🔬</span></h2>
 <ul>
-<li>LLM safety & multi-turn jailbreak robustness</li>
-<li>Agentic reinforcement learning with safety constraints</li>
-<li>Trajectory-level risk modeling & evaluation</li>
+<li>LLM safety and multi-turn jailbreak robustness</li>
+<li>Agentic reinforcement learning under safety constraints</li>
+<li>Trajectory-level risk modeling and evaluation</li>
 <li>Representation learning for alignment</li>
 </ul>
 </section>
 
 <!-- PUBLICATIONS -->
 <section>
-<h2>Publications</h2>
+<h2>Publications <span class="ico">📄</span></h2>
 
 <div class="paper">
 <div class="paper-title">
@@ -194,24 +255,26 @@ SafeDialBench: A Fine-Grained Safety Benchmark for Large Language Models in Mult
 </div>
 <div class="venue">ICLR 2026</div>
 <div class="links">
-<a href="https://github.com/jsj2024/SafeDialBench">GitHub</a>
-<a href="#">Project Page</a>
+<a href="https://arxiv.org/abs/2502.11090" target="_blank" rel="noopener">arXiv</a>
+<a href="https://github.com/drivetosouth/SafeDialBench-Dataset" target="_blank" rel="noopener">GitHub</a>
 </div>
 <div class="tags">
-Hongye Cao, Yanming Wang, Sijia Jing, et al.
+Hongye Cao, Yanming Wang, <strong>Sijia Jing</strong>, et al. (co-first author)
 </div>
 </div>
 
 <div class="paper">
 <div class="paper-title">
-Progressive Induction-Aware Optimization for LLM Safety Under Multi-turn Jailbreaks
+Progressive Induction-Aware Optimization for LLM Safety Under Multi-Turn Jailbreaks
 </div>
-<div class="venue">Machine Learning Journal 2026</div>
+<div class="venue"><em>Machine Learning</em> (Springer), 2026</div>
 <div class="links">
-<a href="https://github.com/jsj2024">GitHub</a>
+<!-- TODO: replace # with the public arXiv / GitHub link once available -->
+<a href="#" target="_blank" rel="noopener">Paper</a>
+<a href="#" target="_blank" rel="noopener">GitHub</a>
 </div>
 <div class="tags">
-Sijia Jing, Hongye Cao, Boyan Wang, Jing Huo & Yang Gao
+<strong>Sijia Jing</strong>, Hongye Cao, Boyan Wang, Jing Huo, Yang Gao (co-first author)
 </div>
 </div>
 
@@ -219,18 +282,18 @@ Sijia Jing, Hongye Cao, Boyan Wang, Jing Huo & Yang Gao
 
 <!-- HONORS -->
 <section>
-<h2>Honors & Awards</h2>
+<h2>Honors &amp; Awards <span class="ico">🏆</span></h2>
 <ul>
+<li><strong>2025</strong>: Outstanding Undergraduate Thesis, Henan Province</li>
+<li><strong>2025</strong>: Outstanding Graduate, Henan Province</li>
+<li><strong>2023</strong>: National Scholarship for Undergraduate Students</li>
 <li>First Prize, China Robotics and AI Competition (National Final)</li>
-<li>National Scholarship for Undergraduate Students (2023)</li>
-<li>Outstanding Undergraduate Thesis, Henan Province (2025)</li>
-<li>Outstanding Graduate, Henan Province</li>
 </ul>
 </section>
 
 <!-- EDUCATION -->
 <section>
-<h2>Education</h2>
+<h2>Education <span class="ico">🎓</span></h2>
 <ul>
 <li><strong>2025–2030</strong>: Ph.D., Nanjing University</li>
 <li><strong>2021–2025</strong>: B.S., Henan University</li>
@@ -239,7 +302,7 @@ Sijia Jing, Hongye Cao, Boyan Wang, Jing Huo & Yang Gao
 
 <!-- FOOTER -->
 <footer>
-© 2025 Sijia Jing · LLM Safety Research
+© 2026 Sijia Jing · LLM Safety Research
 </footer>
 
 </div>
