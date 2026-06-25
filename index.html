@@ -10,9 +10,8 @@
 <style>
 :root {
     --bg:#fafafa;
-    --card:#ffffff;
     --text:#1a1a1a;
-    --muted:#555;
+    --muted:#666;
     --accent:#2c5f8d;
     --border:#e5e5e5;
 }
@@ -26,7 +25,7 @@ body {
 }
 
 .container {
-    max-width: 1050px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 40px 20px;
 }
@@ -40,12 +39,12 @@ body {
 }
 
 .hero img {
-    width:180px;
-    height:180px;
+    width:170px;
+    height:170px;
     border-radius:50%;
     object-fit:cover;
     border:3px solid white;
-    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
 }
 
 h1 {
@@ -57,13 +56,13 @@ h1 {
 .title {
     color: var(--accent);
     font-size:18px;
-    margin-top:5px;
+    margin-top:6px;
 }
 
 .bio {
     color: var(--muted);
     margin-top:10px;
-    max-width: 720px;
+    max-width:750px;
 }
 
 /* SECTION */
@@ -81,38 +80,30 @@ h2 {
 
 /* PUBLICATION */
 .paper {
-    background: var(--card);
-    border:1px solid var(--border);
-    padding:20px;
-    margin-bottom:20px;
-    border-radius:10px;
-    transition: 0.2s ease;
-}
-
-.paper:hover {
-    transform: translateY(-2px);
+    margin-bottom:18px;
+    padding:12px 0;
+    border-bottom:1px solid var(--border);
 }
 
 .paper-title {
+    font-size:17px;
     font-weight:600;
-    font-size:18px;
 }
 
 .venue {
     color: var(--accent);
-    font-weight:500;
     font-size:14px;
 }
 
-.tags {
-    font-size:13px;
+.links a {
     color: var(--muted);
-    margin-top:5px;
+    font-size:14px;
+    text-decoration:none;
+    margin-right:10px;
 }
 
-li {
-    margin-bottom:6px;
-    color: var(--muted);
+.links a:hover {
+    color: var(--accent);
 }
 
 /* skills */
@@ -125,7 +116,7 @@ li {
 .card {
     background:white;
     border:1px solid var(--border);
-    padding:20px;
+    padding:18px;
     border-radius:10px;
 }
 
@@ -133,7 +124,7 @@ footer {
     text-align:center;
     color:#888;
     margin-top:80px;
-    font-size:14px;
+    font-size:13px;
 }
 </style>
 </head>
@@ -154,14 +145,14 @@ footer {
         </div>
 
         <div class="bio">
-            I am a Ph.D. student at Nanjing University working on safety alignment of large language models and agentic systems.
-            My research focuses on multi-turn jailbreak robustness, trajectory-level risk modeling, and reinforcement learning for safe AI agents.
+            I am a Ph.D. student working on safety alignment of large language models and agentic systems,
+            focusing on multi-turn jailbreak robustness and trajectory-level risk modeling.
         </div>
 
         <div class="bio">
             Email: jingsijia2021@163.com · GitHub: jsj2024 · Nanjing, China  
             <br>
-            Education: PhD @ Nanjing University (2025–2030), B.S. @ Henan University (Rank 1/114)
+            PhD @ Nanjing University · B.S. @ Henan University (Rank 1/114)
         </div>
     </div>
 </div>
@@ -170,7 +161,7 @@ footer {
 <section>
 <h2>Research Interests</h2>
 <ul>
-<li>Multi-turn LLM safety & jailbreak robustness</li>
+<li>LLM safety & multi-turn jailbreak robustness</li>
 <li>Agentic reinforcement learning with safety constraints</li>
 <li>Trajectory-level risk modeling & evaluation</li>
 <li>Representation learning for alignment</li>
@@ -186,15 +177,10 @@ footer {
 SafeDialBench: A Fine-Grained Safety Benchmark for Large Language Models in Multi-Turn Dialogues
 </div>
 <div class="venue">ICLR 2026 (Accepted)</div>
-<div class="tags">Co-first Author · Benchmark · Multi-turn Safety</div>
-
-<ul>
-<li>First systematic benchmark for multi-turn jailbreak safety evaluation</li>
-<li>4,053 bilingual dialogues covering 6 safety dimensions and 22 scenarios</li>
-<li>Reveals significant safety degradation after 4 turns in SOTA LLMs</li>
-</ul>
-
-<div class="tags">Code: github.com/jsj2024/SafeDialBench</div>
+<div class="links">
+    <a href="https://arxiv.org/abs/xxxx">Paper</a>
+    <a href="https://github.com/jsj2024/SafeDialBench">Code</a>
+</div>
 </div>
 
 <div class="paper">
@@ -202,15 +188,10 @@ SafeDialBench: A Fine-Grained Safety Benchmark for Large Language Models in Mult
 PIARS: Progressive Induction-Aware Representation Separation for LLM Safety
 </div>
 <div class="venue">Machine Learning Journal (CCF-B, Accepted)</div>
-<div class="tags">First Author · Representation Learning · Alignment</div>
-
-<ul>
-<li>Proposes induction-aware representation separation for multi-turn safety alignment</li>
-<li>Introduces Induction Degree (ID) to model risk accumulation across dialogue turns</li>
-<li>Reduces jailbreak success rate by over 50% while preserving utility</li>
-</ul>
-
-<div class="tags">Code: github.com/jsj2024/PIARS</div>
+<div class="links">
+    <a href="https://link.springer.com/article/xxxx">Paper</a>
+    <a href="https://github.com/jsj2024/PIARS">Code</a>
+</div>
 </div>
 
 </section>
@@ -227,14 +208,14 @@ PIARS: Progressive Induction-Aware Representation Separation for LLM Safety
 
 <div class="card">
 <strong>Engineering</strong>
-<p>PyTorch · HuggingFace · PEFT / LoRA · DeepSpeed · vLLM</p>
+<p>PyTorch · Transformers · PEFT / LoRA · DeepSpeed · vLLM</p>
 </div>
 </div>
 
 </section>
 
 <footer>
-© 2025 Sijia Jing · PhD @ Nanjing University · LLM Safety Research
+© 2025 Sijia Jing · LLM Safety Research
 </footer>
 
 </div>
