@@ -14,16 +14,18 @@
     --border:#e5e5e5;
     --line-light:#ededed;
     --nav-h:60px;
+    --mono:'Consolas','Monaco','Menlo','Courier New',monospace;
 }
 
 html { scroll-behavior:smooth; }
 
 body {
     font-family: var(--mono);
+    font-size:15px;
     margin:0;
     background: var(--bg);
     color: var(--text);
-    line-height:1.7;
+    line-height:1.75;
 }
 
 /* NAVBAR */
@@ -50,7 +52,7 @@ body {
 
 .nav-brand {
     font-family:var(--mono);
-    font-size:19px;
+    font-size:18px;
     font-weight:700;
     letter-spacing:-0.5px;
     color:var(--text);
@@ -65,7 +67,7 @@ body {
 .nav-links a {
     color:var(--muted);
     text-decoration:none;
-    font-size:14px;
+    font-size:13px;
     font-weight:500;
     transition:color 0.2s ease;
 }
@@ -99,14 +101,14 @@ body {
 
 h1 {
     font-family:var(--mono);
-    font-size:38px;
+    font-size:34px;
     letter-spacing:-1px;
     margin:0;
 }
 
 .title {
     color: var(--accent);
-    font-size:17px;
+    font-size:16px;
     margin-top:8px;
 }
 
@@ -114,7 +116,7 @@ h1 {
     color: var(--muted);
     margin-top:12px;
     max-width:750px;
-    font-size:15px;
+    font-size:14px;
 }
 
 .bio a { color:var(--accent); text-decoration:none; }
@@ -160,9 +162,12 @@ section {
     scroll-margin-top: calc(var(--nav-h) + 20px);
 }
 
+section ul { font-size:14.5px; padding-left:22px; }
+section ul li { margin-bottom:4px; }
+
 h2 {
     font-family:var(--mono);
-    font-size:25px;
+    font-size:23px;
     letter-spacing:-0.5px;
     border-bottom:2px solid var(--accent);
     display:inline-block;
@@ -170,23 +175,23 @@ h2 {
 }
 
 h2 .ico {
-    font-size:20px;
+    font-size:19px;
     margin-left:6px;
 }
 
 /* PUBLICATION */
 .paper {
     display:flex;
-    gap:20px;
+    gap:24px;
     align-items:flex-start;
-    margin-bottom:22px;
-    padding:14px 0;
+    margin-bottom:26px;
+    padding:16px 0;
     border-bottom:1px solid var(--border);
 }
 
 .paper-thumb {
-    flex:0 0 165px;
-    width:165px;
+    flex:0 0 250px;
+    width:250px;
 }
 
 .paper-thumb img {
@@ -208,10 +213,10 @@ h2 .ico {
 .venue {
     color: var(--accent);
     font-size:14px;
-    margin-top:2px;
+    margin-top:4px;
 }
 
-.links { margin-top:4px; }
+.links { margin-top:6px; }
 
 .links a {
     color: var(--muted);
@@ -227,7 +232,8 @@ h2 .ico {
 .tags {
     font-size:13px;
     color: var(--muted);
-    margin-top:4px;
+    margin-top:6px;
+    line-height:1.6;
 }
 
 .tags .me { color: var(--text); font-weight:600; }
@@ -245,25 +251,24 @@ footer {
     font-size:13px;
 }
 
-#news a, .links a.cite { }
 #news a { color:var(--accent); text-decoration:none; }
 #news a:hover { text-decoration:underline; }
 
 @media (max-width:720px){
     .nav-links { gap:14px; }
-    .nav-links a { font-size:13px; }
+    .nav-links a { font-size:12px; }
 }
 
 @media (max-width:640px){
-    .nav-brand { font-size:17px; }
+    .nav-brand { font-size:16px; }
     .nav-links { gap:12px; }
     .nav-links a:nth-child(n+4){ display:none; }
     .hero{flex-direction:column;text-align:center;padding:40px 0;gap:24px;}
     .hero img{width:190px;height:190px;}
     .social{justify-content:center;}
-    h1{font-size:32px;}
+    h1{font-size:30px;}
     .paper{flex-direction:column;}
-    .paper-thumb{flex-basis:auto;width:100%;max-width:320px;}
+    .paper-thumb{flex-basis:auto;width:100%;max-width:100%;}
 }
 </style>
 </head>
@@ -323,7 +328,7 @@ footer {
         </div>
 
         <div class="bio">
-            Nanjing, China · Ph.D. @ Nanjing University (2025～0) · B.S. @ Henan University (2021–2025)
+            Nanjing, China · Ph.D. @ Nanjing University (2025–present) · B.S. @ Henan University (2021–2025)
         </div>
     </div>
 </div>
@@ -412,7 +417,7 @@ Progressive Induction-Aware Optimization for LLMs Safety Under Multi-turn Jailbr
 <section id="education">
 <h2>Education <span class="ico">🎓</span></h2>
 <ul>
-<li><strong>2025～</strong>: Ph.D., Nanjing University</li>
+<li><strong>2025–present</strong>: Ph.D., Nanjing University</li>
 <li><strong>2021–2025</strong>: B.S., Henan University</li>
 </ul>
 </section>
